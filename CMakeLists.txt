@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.11)
+project(Parallel-Image-Processing)
+find_package(OpenCV REQUIRED)
+file(GLOB SOURCES "src/*.cpp")
+add_executable(Parallel-Image-Processing ${SOURCES})
+target_link_libraries(Parallel-Image-Processing ${OpenCV_LIBS})
