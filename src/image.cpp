@@ -15,7 +15,7 @@ void Image::save(std::string filePath) {
 }
 
 ushort Image::clamp(double comp) {
-	return std::min(65535.0, std::max(0.0, comp));
+	return std::min(255.0, std::max(0.0, comp));
 }
 
 void Image::grayscale() {
@@ -48,8 +48,8 @@ void Image::convolution(std::string effect) {
 	} else if (effect == "G") {
 		greyscale = true;
 	}
-	for (int y = bounds.y; y < bounds.height; y++) {
-		for (int x = bounds.x; x < bounds.width; x++) {
+	for (int y = 0; y < in.rows; y++) {
+		for (int x = 0; x < in.cols; x++) {
 			if (greyscale) {
 				cv::Vec4b pixel = in.at<cv::Vec4b>(y, x);
 				double b = pixel[0];
@@ -67,7 +67,7 @@ void Image::convolution(std::string effect) {
 				for (int k = 0; k < 9; k++) {
 					int newY = y + filter[k][0];
 					int newX = x + filter[k][1];
-					if (newY >= bounds.y && newY < bounds.height && newX >= bounds.x && newX < bounds.width) {
+					if (newY >= 0 && newY < in.rows && newX >= 0 && newX < in.cols) {
 						cv::Vec4b pixel = in.at<cv::Vec4b>(newY, newX);
 						double b = pixel[0];
 						double g = pixel[1];
