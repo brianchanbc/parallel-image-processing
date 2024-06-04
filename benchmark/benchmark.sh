@@ -1,18 +1,18 @@
 #!/bin/bash
 #
-#SBATCH --mail-user=brianchan@cs.uchicago.com
+#SBATCH --mail-user=xxx@xxx.com
 #SBATCH --mail-type=ALL
 #SBATCH --job-name=parallel-image-processing
-#SBATCH --output=/home/brianchan/parallel-image-processing/benchmark/slurm/out/measurements.txt
-#SBATCH --error=/home/brianchan/parallel-image-processing/benchmark/slurm/err/measurements_err.txt
-#SBATCH --chdir=/home/brianchan/parallel-image-processing/benchmark
+#SBATCH --output=/parallel-image-processing/benchmark/slurm/out/measurements.txt
+#SBATCH --error=/parallel-image-processing/benchmark/slurm/err/measurements_err.txt
+#SBATCH --chdir=/parallel-image-processing/build
 #SBATCH --partition=fast
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=48
 #SBATCH --mem-per-cpu=900
 #SBATCH --exclusive
-#SBATCH --time=8:00:00
+#SBATCH --time=4:00:00
 
 PROGRAM_PATH="./Parallel-Image-Processing editor"
 SIZES=("small" "mixture" "big")
@@ -53,4 +53,4 @@ done
 
 sleep 10
 
-python graph.py
+python ../benchmark/graph.py

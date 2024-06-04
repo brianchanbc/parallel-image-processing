@@ -5,6 +5,7 @@
 #include <chrono>
 #include <thread>
 #include <vector>
+#include <iostream>
 
 // Represents the configuration value for the program
 struct Config {

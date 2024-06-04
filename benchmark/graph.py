@@ -76,7 +76,7 @@ def create_graph(file):
     plt.ylabel('Speedup')
     plt.grid(True)
     plt.legend(title='File Size')
-    plt.savefig('speedup.png')
+    plt.savefig('../benchmark/speedup.png')
 
 # Call the function to create the graph
-create_graph("slurm/out/measurements.txt")
+create_graph("../benchmark/slurm/out/measurements.txt")

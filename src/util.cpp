@@ -1,22 +1,7 @@
-#include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
-#include <vector>
 #include "../include/util.hpp"
 #include "../include/image.hpp"
 #include "../lib/json.hpp"
 using json = nlohmann::json;
-
-// Locks the queue using the TAS lock
-void TASLock::lock() {
-	while (state.exchange(true)) {}
-}
-
-// Unlocks the queue using the TAS lock
-void TASLock::unlock() {
-	state.exchange(false);
-}
 
 // Inserts jobs to the queue
 void Queue::insertJobsToQueue(std::vector<ImageInstruction> instructions) {
@@ -84,7 +69,6 @@ void ImageProcessorUtil::runImageProcessing(ImageInstruction instruction, bool p
     // Apply the effects according to the instruction
     for (int i = 0; i < instruction.effects.size(); i++) {
         std::string effect = instruction.effects[i];
-
         // Apply greyscale effect
         if (effect == "G") {
             if (parallel) {

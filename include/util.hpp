@@ -3,6 +3,9 @@
 #include <list>
 #include <atomic>
 #include <mutex>
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 // ImageInstruction stores where to get the file, where to store the output file, the effects
 // to be applied and the input directory to get the input image from (i.e. big, mixture or small)
@@ -13,20 +16,10 @@ struct ImageInstruction {
     std::string inDir;
 };
 
-// TASLock is a test-and-set lock that uses atomic operations to lock and unlock
-class TASLock {
-    std::atomic<bool> state;
-public:
-    // function to lock 
-    void lock();
-    // function to unlock 
-    void unlock();
-};
-
 // Queue class that stores the jobs to be processed and lock
 class Queue {
     // Lock to protect the queue
-    TASLock lock;
+    std::mutex lock;
     // List of jobs to be processed
     std::list<ImageInstruction> jobs;
 public:
