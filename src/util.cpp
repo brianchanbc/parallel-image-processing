@@ -80,7 +80,6 @@ void ImageProcessorUtil::runImageProcessing(ImageInstruction instruction, bool p
     Image img(fullInPath);
 
     std::string fullOutPath = "../data/out/" + dataDir + "_" + outPath;
-    std::cout << "Image size: " << dataDir << std::endl;
 
     // Apply the effects according to the instruction
     for (int i = 0; i < instruction.effects.size(); i++) {

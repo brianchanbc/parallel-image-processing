@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
         schedule.Run();
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> diff = end-start;
-        std::cout << "Total runtime: " << diff.count() << "s\n";
+        std::cout << diff.count() << "\n";
 
         return 0;
 }
